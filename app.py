@@ -23,32 +23,11 @@ def format_text_with_attributions(text, attributions, threshold=0.1):
     if not attributions:
         return text # Return plain text if no attributions
 
-    # Normalize scores for better color mapping (optional, but good for visualization)
-    # For simplicity, we'll use raw scores and a threshold.
-    # A more advanced approach would be to scale scores to [0,1] or [-1,1]
-
     highlighted_parts = []
-    # The attributions from transformers-interpret are often (token, score)
-    # We need to reconstruct the text carefully. This is a simplified approach.
-    # It assumes attributions roughly correspond to words.
-    # More robust token-to-word mapping might be needed for complex tokenization.
-
     current_text_pos = 0
     processed_tokens_text = ""
 
-    # Sort attributions by their appearance order in the text if they are not already.
-    # transformers-interpret usually returns them in order.
-    # Example attribution: ('This', 0.1), ('data', 0.5), ('clearly', 0.8), ...
-
-    # This is a simple highlighting method. More robust methods would involve
-    # aligning tokens from the tokenizer with words in the original text.
-    # `transformers-interpret` word_attributions often already gives word-level scores.
-
-    # Create a dictionary for quick lookup of attribution scores by word (lowercase)
-    # This is a simplification; true token alignment is complex.
-    # For this example, we'll assume tokens are space-separated words.
-    
-    # First, split the text into words and keep track of original casing and spaces
+    # Split the text into words and keep track of original casing and spaces
     import re
     words_and_separators = re.findall(r"[\w'-]+|[^\w\s']+|\s+", text, re.UNICODE)
 
@@ -65,18 +44,15 @@ def format_text_with_attributions(text, attributions, threshold=0.1):
         score = attr_map.get(word_lower, 0) # Get score for the lowercase version
 
         if abs(score) > threshold:
-            # Basic color scale: positive (contributing to class) = green, negative = red
             # More intense color for higher scores
             alpha = min(1, abs(score) * 2) # Scale alpha, cap at 1
             if score > 0: # Contributes positively to this class
-                # Greenish for positive contributions
-                # background_color = f"rgba(144, 238, 144, {alpha})" # Light green
+                # Green for positive contributions
                 color_intensity = int(min(200, 50 + abs(score) * 300)) # Cap intensity
                 background_color = f"rgba({200-color_intensity//2}, {150+color_intensity//2}, {200-color_intensity//2}, 0.7)"
 
             else: # Contributes negatively (or towards other classes)
-                # Reddish for negative contributions
-                # background_color = f"rgba(255, 182, 193, {alpha})" # Light pink/red
+                # Red for negative contributions
                 color_intensity = int(min(200, 50 + abs(score) * 300))
                 background_color = f"rgba({150+color_intensity//2}, {200-color_intensity//2}, {200-color_intensity//2}, 0.7)"
 
