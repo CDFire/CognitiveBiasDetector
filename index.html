@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognitive Bias Detector Project</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f6f8fa;
+            color: #24292e;
+        }
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+        }
+        header {
+            text-align: center;
+            border-bottom: 1px solid #e1e4e8;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #0366d6;
+        }
+        header p {
+            font-size: 1.1em;
+            color: #586069;
+        }
+        .button-group {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #0366d6;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            border: 1px solid #0366d6;
+            transition: background-color 0.2s ease-in-out;
+        }
+        .button:hover {
+            background-color: #005cc5;
+        }
+        .button.secondary {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .button.secondary:hover {
+            background-color: #218838;
+        }
+        section {
+            margin-bottom: 30px;
+        }
+        h2 {
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+            font-size: 1.8em;
+            color: #24292e;
+        }
+        img.screenshot {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            border: 1px solid #e1e4e8;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            display: block; /* Center image if container is text-aligned */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        ul, ol {
+            padding-left: 20px;
+        }
+        code {
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+            background-color: rgba(27,31,35,.05);
+            padding: .2em .4em;
+            margin: 0;
+            font-size: 85%;
+            border-radius: 3px;
+        }
+        pre code {
+            display: block;
+            padding: 1em;
+            overflow-x: auto;
+            font-size: 85%;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e1e4e8;
+            font-size: 0.9em;
+            color: #586069;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            margin-bottom: 20px;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Cognitive Bias Detector</h1>
+            <p>An AI-powered tool to identify and understand potential cognitive biases in text using a fine-tuned BERT model and XAI explanations.</p>
+        </header>
+
+        <div class="button-group">
+            <a href="https://github.com/<your-github-username>/<your-repo-name>" class="button">View on GitHub</a>
+            <!-- If you have a live interactive demo deployed elsewhere (e.g., Heroku, PythonAnywhere), link it here -->
+            <!-- <a href="YOUR_LIVE_DEMO_URL" class="button secondary">Try Live Demo</a> -->
+        </div>
+
+        <section id="about">
+            <h2>About The Project</h2>
+            <p>This project leverages Natural Language Processing (NLP) and Explainable AI (XAI) to help users become more aware of common cognitive biases such as Confirmation Bias, Anchoring Bias, Availability Heuristic, and Sunk Cost Fallacy. By inputting text, the tool uses a fine-tuned BERT model to predict potential biases and highlights the words that most influenced this prediction.</p>
+            <p>The goal is not to definitively label text as "biased," but to provide an assistive tool for reflection and improved decision-making by understanding how language might reflect underlying cognitive patterns.</p>
+        </section>
+
+        <section id="screenshots">
+            <h2>Screenshots</h2>
+            <p>Here's a glimpse of the application's interface and output:</p>
+            <img src="./assets/ConfirmationBias" alt="Highlighted Text Example" class="screenshot">
+            <p style="text-align:center; font-style:italic;">Example of detected bias with influential words highlighted.</p>
+        </section>
+
+        <section id="features">
+            <h2>Key Features</h2>
+            <ul>
+                <li>Detects Confirmation Bias, Anchoring Bias, Availability Heuristic, and Sunk Cost Fallacy.</li>
+                <li>Utilizes a fine-tuned <code>bert-base-uncased</code> model.</li>
+                <li>Provides word-level explanations (XAI) by highlighting influential text.</li>
+                <li>Offers definitions and de-biasing recommendations for identified biases.</li>
+                <li>Simple and intuitive web interface built with Flask (for local execution).</li>
+            </ul>
+        </section>
+
+        <section id="tech-stack">
+            <h2>Technology Stack</h2>
+            <p>Python, Flask, Hugging Face Transformers (PyTorch), scikit-learn, transformers-interpret, HTML, CSS.</p>
+        </section>
+
+        <section id="getting-started">
+            <h2>Get It Running Locally</h2>
+            <p>To run this project on your own machine and interact with the Flask application:</p>
+            <ol>
+                <li><strong>Clone the repository:</strong><br>
+                    <code>git clone https://github.com/<your-github-username>/<your-repo-name>.git</code><br>
+                    <code>cd <your-repo-name></code>
+                </li>
+                <li><strong>Set up a Python virtual environment and install dependencies:</strong><br>
+                    <code>python3 -m venv venv</code><br>
+                    <code>source venv/bin/activate  # macOS/Linux</code><br>
+                    <code>pip install -r requirements.txt</code>
+                </li>
+                <li><strong>Generate synthetic training data:</strong><br>
+                    <code>python synthetic_data_generator.py</code>
+                </li>
+                <li><strong>Train the BERT model (can take a long time, GPU recommended):</strong><br>
+                    <code>python train_transformer.py</code>
+                </li>
+                <li><strong>Run the Flask application:</strong><br>
+                    <code>python app.py</code>
+                </li>
+                <li>Open your browser and go to <code>http://127.0.0.1:5000/</code>.</li>
+            </ol>
+            <p>For detailed instructions, please refer to the <a href="https://github.com/CDFire/CognitiveBiasDetector/blob/main/README.md">README.md</a> file in the repository.</p>
+        </section>
+
+        <footer>
+            <p>View the source code on <a href="https://github.com/CDFire/CognitiveBiasDetector">GitHub</a>.</p>
+        </footer>
+    </div>
+</body>
+</html>
