@@ -1,0 +1,8 @@
+pandas
+scikit-learn
+Flask
+transformers[torch]==4.38.0
+transformers-interpret
+torch
+datasets
+accelerate==0.28.0  
