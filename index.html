@@ -3,7 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cognitive Bias Detector Project</title>
+    <!-- SEO: Title Tag -->
+    <title>Cognitive Bias Detector AI Project by Cole Feuer | NLP & BERT</title>
+    <!-- SEO: Meta Description -->
+    <meta name="description" content="Explore Cole Feuer's AI project: a Cognitive Bias Detector using BERT and NLP. Discover how this tool identifies biases in text with XAI explanations. Source code on GitHub (CDFire/CognitiveBiasDetector).">
+    <!-- SEO: Keywords (less impact now, but can't hurt) -->
+    <meta name="keywords" content="Cole Feuer, CDFire, Cognitive Bias Detector, AI Project, NLP, BERT, Machine Learning, Python, Flask, Explainable AI, XAI, Portfolio">
+    <!-- SEO: Canonical URL -->
+    <link rel="canonical" href="https://cdfire.github.io/CognitiveBiasDetector/" />
+    <!-- SEO: Author (less direct impact, but good practice) -->
+    <meta name="author" content="Cole Feuer">
+
+    <!-- Open Graph Meta Tags (for social media sharing) -->
+    <meta property="og:title" content="Cognitive Bias Detector AI Project by Cole Feuer (CDFire)" />
+    <meta property="og:description" content="Cole Feuer's (CDFire) AI project using BERT and NLP to identify cognitive biases in text with XAI explanations." />
+    <meta property="og:url" content="https://cdfire.github.io/CognitiveBiasDetector/" />
+    <meta property="og:type" content="website" />
+
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -27,12 +43,12 @@
             padding-bottom: 20px;
             margin-bottom: 20px;
         }
-        header h1 {
+        header h1 { /* SEO: H1 Tag */
             margin: 0;
             font-size: 2.5em;
             color: #0366d6;
         }
-        header p {
+        header p.subtitle { /* SEO: Subtitle, more keywords */
             font-size: 1.1em;
             color: #586069;
         }
@@ -55,17 +71,10 @@
         .button:hover {
             background-color: #005cc5;
         }
-        .button.secondary {
-            background-color: #28a745;
-            border-color: #28a745;
-        }
-        .button.secondary:hover {
-            background-color: #218838;
-        }
         section {
             margin-bottom: 30px;
         }
-        h2 {
+        h2 { /* SEO: H2 Tag */
             border-bottom: 1px solid #eaecef;
             padding-bottom: 0.3em;
             font-size: 1.8em;
@@ -78,7 +87,7 @@
             border: 1px solid #e1e4e8;
             margin-top: 10px;
             margin-bottom: 10px;
-            display: block; /* Center image if container is text-aligned */
+            display: block;
             margin-left: auto;
             margin-right: auto;
         }
@@ -107,47 +116,62 @@
             font-size: 0.9em;
             color: #586069;
         }
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
-            overflow: hidden;
-            max-width: 100%;
-            background: #000;
-            margin-bottom: 20px;
-        }
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
     </style>
+
+    <!-- SEO: Structured Data (JSON-LD for Person and SoftwareApplication) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "name": "Cole Feuer",
+          "url": "https://github.com/CDFire",
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Cognitive Bias Detector AI Project",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "Cross-platform",
+          "abstract": "An AI-powered tool by Cole Feuer (CDFire) to identify and understand potential cognitive biases in text using a fine-tuned BERT model and XAI explanations.",
+          "author": {
+            "@type": "Person",
+            "name": "Cole Feuer",
+            "url": "https://github.com/CDFire"
+          },
+          "codeRepository": "https://github.com/CDFire/CognitiveBiasDetector",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "keywords": "Cognitive Bias, AI, NLP, BERT, Python, Cole Feuer, CDFire, XAI"
+        }
+      ]
+    }
+    </script>
+
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Cognitive Bias Detector</h1>
-            <p>An AI-powered tool to identify and understand potential cognitive biases in text using a fine-tuned BERT model and XAI explanations.</p>
+            <h1>Cognitive Bias Detector: An AI Project by Cole Feuer (CDFire)</h1>
+            <p class="subtitle">Leveraging BERT, NLP, and XAI to identify and understand cognitive biases in text.</p>
         </header>
 
         <div class="button-group">
-            <a href="https://github.com/<your-github-username>/<your-repo-name>" class="button">View on GitHub</a>
-            <!-- If you have a live interactive demo deployed elsewhere (e.g., Heroku, PythonAnywhere), link it here -->
-            <!-- <a href="YOUR_LIVE_DEMO_URL" class="button secondary">Try Live Demo</a> -->
+            <a href="https://github.com/CDFire/CognitiveBiasDetector" class="button">View on GitHub (CDFire)</a>
         </div>
 
         <section id="about">
-            <h2>About The Project</h2>
-            <p>This project leverages Natural Language Processing (NLP) and Explainable AI (XAI) to help users become more aware of common cognitive biases such as Confirmation Bias, Anchoring Bias, Availability Heuristic, and Sunk Cost Fallacy. By inputting text, the tool uses a fine-tuned BERT model to predict potential biases and highlights the words that most influenced this prediction.</p>
-            <p>The goal is not to definitively label text as "biased," but to provide an assistive tool for reflection and improved decision-making by understanding how language might reflect underlying cognitive patterns.</p>
+            <h2>About This Project by Cole Feuer</h2>
+            <p>This project, developed by <strong>Cole Feuer (GitHub: CDFire)</strong>, demonstrates an application of Natural Language Processing (NLP) and Explainable AI (XAI). The Cognitive Bias Detector helps users become more aware of common cognitive biases such as Confirmation Bias, Anchoring Bias, Availability Heuristic, and Sunk Cost Fallacy. By inputting text, the tool uses a fine-tuned BERT model, a sophisticated NLP technique, to predict potential biases. Furthermore, it highlights the words that most influenced this prediction, offering a degree of transparency into the AI's decision-making process.</p>
+            <p>The goal of this work by Cole Feuer is not to definitively label text as "biased," but to provide an assistive tool for reflection and improved decision-making by understanding how language might reflect underlying cognitive patterns. This is a portfolio piece showcasing Cole Feuer's skills in AI and machine learning under the GitHub alias CDFire.</p>
         </section>
 
         <section id="screenshots">
-            <h2>Screenshots</h2>
-            <p>Here's a glimpse of the application's interface and output:</p>
-            <img src="./assets/ConfirmationBias" alt="Highlighted Text Example" class="screenshot">
+            <p>Here's a glimpse of the application's interface and output, developed by Cole Feuer:</p>
+            <img src="./images/ConfirmationBias.png" alt="Highlighted Text Example from Cole Feuer's (CDFire) Bias Detector" class="screenshot">
             <p style="text-align:center; font-style:italic;">Example of detected bias with influential words highlighted.</p>
         </section>
 
@@ -155,48 +179,42 @@
             <h2>Key Features</h2>
             <ul>
                 <li>Detects Confirmation Bias, Anchoring Bias, Availability Heuristic, and Sunk Cost Fallacy.</li>
-                <li>Utilizes a fine-tuned <code>bert-base-uncased</code> model.</li>
+                <li>Utilizes a fine-tuned <code>bert-base-uncased</code> model, an advanced NLP technique.</li>
                 <li>Provides word-level explanations (XAI) by highlighting influential text.</li>
                 <li>Offers definitions and de-biasing recommendations for identified biases.</li>
-                <li>Simple and intuitive web interface built with Flask (for local execution).</li>
+                <li>Simple and intuitive web interface built with Flask (for local execution by users like Cole Feuer).</li>
             </ul>
         </section>
 
         <section id="tech-stack">
-            <h2>Technology Stack</h2>
-            <p>Python, Flask, Hugging Face Transformers (PyTorch), scikit-learn, transformers-interpret, HTML, CSS.</p>
+            <h2>Technology Stack Used</h2>
+            <p>Python, Flask, Hugging Face Transformers (PyTorch), scikit-learn, transformers-interpret, HTML, CSS. This stack was chosen by Cole Feuer (CDFire) for its robustness in NLP and web development.</p>
         </section>
 
         <section id="getting-started">
-            <h2>Get It Running Locally</h2>
-            <p>To run this project on your own machine and interact with the Flask application:</p>
+            <h2>Get Project Running Locally</h2>
+            <p>To run this project on your own machine:</p>
             <ol>
-                <li><strong>Clone the repository:</strong><br>
-                    <code>git clone https://github.com/<your-github-username>/<your-repo-name>.git</code><br>
-                    <code>cd <your-repo-name></code>
+                <li><strong>Clone Cole Feuer's (CDFire) repository:</strong><br>
+                    <code>git clone https://github.com/CDFire/CognitiveBiasDetector.git</code><br>
+                    <code>cd CognitiveBiasDetector</code>
                 </li>
-                <li><strong>Set up a Python virtual environment and install dependencies:</strong><br>
-                    <code>python3 -m venv venv</code><br>
-                    <code>source venv/bin/activate  # macOS/Linux</code><br>
-                    <code>pip install -r requirements.txt</code>
-                </li>
-                <li><strong>Generate synthetic training data:</strong><br>
-                    <code>python synthetic_data_generator.py</code>
-                </li>
-                <li><strong>Train the BERT model (can take a long time, GPU recommended):</strong><br>
-                    <code>python train_transformer.py</code>
-                </li>
-                <li><strong>Run the Flask application:</strong><br>
-                    <code>python app.py</code>
-                </li>
-                <li>Open your browser and go to <code>http://127.0.0.1:5000/</code>.</li>
+                <li><strong>Set up a Python virtual environment and install dependencies.</strong></li>
+                <li><strong>Generate synthetic training data.</strong></li>
+                <li><strong>Train the BERT model (GPU recommended).</strong></li>
+                <li><strong>Run the Flask application.</strong></li>
             </ol>
-            <p>For detailed instructions, please refer to the <a href="https://github.com/CDFire/CognitiveBiasDetector/blob/main/README.md">README.md</a> file in the repository.</p>
+            <p>For detailed instructions, please refer to the <a href="https://github.com/CDFire/CognitiveBiasDetector/blob/main/README.md">README.md</a> file in Cole Feuer's (CDFire) repository.</p>
         </section>
 
         <footer>
-            <p>View the source code on <a href="https://github.com/CDFire/CognitiveBiasDetector">GitHub</a>.</p>
+            <p>© <span id="currentYear"></span> <a href="https://github.com/CDFire">Cole Feuer (CDFire)</a>. This Cognitive Bias Detector project is inspired by research in cognitive psychology and NLP.</p>
+            <p>View Cole Feuer's (CDFire) source code on <a href="https://github.com/CDFire/CognitiveBiasDetector">GitHub</a>.</p>
         </footer>
     </div>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
