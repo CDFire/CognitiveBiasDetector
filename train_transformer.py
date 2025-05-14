@@ -10,16 +10,15 @@ import os
 from bias_definitions import label2id, id2label, CLASSIFIER_LABELS
 
 # --- Configuration ---
-MODEL_NAME = "bert-base-uncased" # **** USE BERT ****
+MODEL_NAME = "bert-base-uncased"
 DATA_FILE = "generated_bias_data.csv"
-OUTPUT_DIR = "./fine_tuned_bert_model" # **** New output directory ****
+OUTPUT_DIR = "./fine_tuned_bert_model"
 NUM_TRAIN_EPOCHS = 3
 LEARNING_RATE = 2e-5
-BATCH_SIZE = 8 # **** BERT is larger, potentially need smaller batch size ****
+BATCH_SIZE = 8 # **** BERT is large, potentially needs smaller batch size ****
 TEST_SIZE = 0.15
 
 # --- Helper Functions (load_and_prepare_data, tokenize_function, compute_metrics) ---
-# --- These can remain the same as in the v2 version ---
 def load_and_prepare_data(data_file):
     if not os.path.exists(data_file):
         raise FileNotFoundError(f"Data file not found: {data_file}. Run synthetic_data_generator.py")
@@ -40,7 +39,7 @@ def load_and_prepare_data(data_file):
     return ds
 
 def tokenize_function(examples, tokenizer):
-    # max_length=128 might be short for some BERT use cases, but okay for our generated text
+    # max_length=128 might be short for some BERT use cases
     return tokenizer(examples["text"], padding="max_length", truncation=True, max_length=128)
 
 def compute_metrics(pred):
@@ -60,14 +59,14 @@ def train_model():
     """Loads data, tokenizer, BERT model, and trains the classifier."""
     print("Starting BERT model training...")
 
-    # 1. Load and Prepare Data
+    # Load and Prepare Data
     try:
         dataset = load_and_prepare_data(DATA_FILE)
     except (FileNotFoundError, ValueError) as e:
         print(f"Error loading data: {e}")
         return
 
-    # 2. Load Tokenizer and Model (BERT)
+    # Load Tokenizer and BERT model
     print(f"Loading tokenizer and model: {MODEL_NAME}")
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
     model = AutoModelForSequenceClassification.from_pretrained(
@@ -80,13 +79,13 @@ def train_model():
     model.to(device)
     print(f"Using device: {device}")
 
-    # 3. Tokenize Data
+    # Tokenize Data
     print("Tokenizing datasets...")
     tokenized_datasets = dataset.map(lambda examples: tokenize_function(examples, tokenizer), batched=True)
     tokenized_datasets = tokenized_datasets.remove_columns(["text", "__index_level_0__"]) # Remove pandas index if present
     tokenized_datasets.set_format("torch")
 
-    # 4. Define Training Arguments
+    # Define Training Arguments
     print("Setting up training arguments...")
     # Ensure the output directory exists
     if not os.path.exists(OUTPUT_DIR):
@@ -95,19 +94,19 @@ def train_model():
         output_dir=OUTPUT_DIR,
         num_train_epochs=NUM_TRAIN_EPOCHS,
         learning_rate=LEARNING_RATE,
-        per_device_train_batch_size=BATCH_SIZE, # Use potentially smaller batch size
+        per_device_train_batch_size=BATCH_SIZE,
         per_device_eval_batch_size=BATCH_SIZE,
         weight_decay=0.01,
         evaluation_strategy="epoch",
         save_strategy="epoch",
-        logging_dir=f'{OUTPUT_DIR}/logs', # Log within the model dir
+        logging_dir=f'{OUTPUT_DIR}/logs',
         logging_steps=50,
         load_best_model_at_end=True,
         metric_for_best_model="f1",
         push_to_hub=False,
     )
 
-    # 5. Initialize Trainer
+    # Initialize Trainer
     print("Initializing Trainer...")
     trainer = Trainer(
         model=model,
@@ -118,12 +117,12 @@ def train_model():
         compute_metrics=compute_metrics
     )
 
-    # 6. Train
+    # Train
     print("Starting training...")
     trainer.train()
     print("Training finished.")
 
-    # 7. Evaluate on Test Set
+    # Evaluate on Test Set
     print("Evaluating on test set...")
     test_results = trainer.evaluate(tokenized_datasets["test"])
     print("\n--- Test Set Evaluation Results ---")
@@ -131,7 +130,7 @@ def train_model():
         print(f"{key}: {value:.4f}")
     print("-----------------------------------\n")
 
-    # 8. Save Model and Tokenizer
+    # Save Model and Tokenizer
     print(f"Saving fine-tuned BERT model and tokenizer to {OUTPUT_DIR}...")
     trainer.save_model(OUTPUT_DIR)
     print("Model and tokenizer saved successfully.")
