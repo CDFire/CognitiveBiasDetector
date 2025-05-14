@@ -121,3 +121,12 @@ Cognitive biases are systematic patterns of deviation from norm or rationality i
 *   [ ] **Alternative Explanation Methods:** Explore and integrate other XAI techniques.
 *   [ ] **Integration with other platforms:** (e.g., browser extension, document editor plugin).
 *   [ ] **Quantitative Evaluation:** More rigorous evaluation on a dedicated, unseen test set of (ideally) human-annotated data.
+
+---
+
+Here's a look at the Cognitive Bias Detector in action:
+![Cognitive Bias Detector App](./images/ConfirmationBias.png)
+![Cognitive Bias Detector App](./images/AnchoringBias.png)
+![Cognitive Bias Detector App](./images/AvailabilityHeuristic.png)
+![Cognitive Bias Detector App](./images/SunkCostFallacy.png)
+![Cognitive Bias Detector App](./images/NoBias.png)
