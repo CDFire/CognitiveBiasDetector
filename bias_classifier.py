@@ -4,9 +4,7 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification, Text
 import torch
 import os
 from bias_definitions import id2label, CLASSIFIER_LABELS # Make sure CLASSIFIER_LABELS is imported
-
-# NEW IMPORT
-from transformers_interpret import SequenceClassificationExplainer # If you installed transformers-interpret
+from transformers_interpret import SequenceClassificationExplainer
 
 # --- Configuration ---
 MODEL_DIR = "./fine_tuned_bert_model"
@@ -67,23 +65,18 @@ def get_word_attributions(text, predicted_class_name):
 
     try:
         # Ensure the predicted_class_name is one of the actual labels the model was trained on
-        # If predicted_class_name is e.g. "Classifier Error", we can't get attributions for it.
         if predicted_class_name not in CLASSIFIER_LABELS:
              print(f"Cannot get attributions for class '{predicted_class_name}'. It's not a trained label.")
              return []
 
 
-        # Initialize the explainer for the specific model type (BERT in this case)
-        # For BERT, it's often 'bert'
-        # Check transformers-interpret documentation for other model types if you switch.
-        # The explainer needs the raw model and tokenizer, not the pipeline.
+        # Initialize the explainer for the specific model type BERT
         cls_explainer = SequenceClassificationExplainer(
             raw_model,
             raw_tokenizer
         )
         # Get attributions. The target class can be specified by its string name.
         word_attributions = cls_explainer(text, class_name=predicted_class_name)
-        # cls_explainer.visualize("attribution_output.html") # Optional: creates an HTML visualization
 
         # word_attributions is a list of tuples (word, score)
         return word_attributions
@@ -92,7 +85,7 @@ def get_word_attributions(text, predicted_class_name):
         return []
 
 
-def predict_bias_with_classifier(text, get_attributions=False): # Added get_attributions flag
+def predict_bias_with_classifier(text, get_attributions=False):
     """
     Predicts bias and optionally returns word attributions.
     Returns: (predicted_bias, confidence, word_attributions_list)
@@ -102,7 +95,7 @@ def predict_bias_with_classifier(text, get_attributions=False): # Added get_attr
 
     if classifier_pipeline is None:
         print("BERT Classifier pipeline not loaded. Attempting to load...")
-        if not load_classifier_and_model(): # Use the new loading function
+        if not load_classifier_and_model(): 
              return "Classifier Error", 0.0, attributions # Return specific error label
 
     if not text or not isinstance(text, str):
@@ -137,9 +130,6 @@ def predict_bias_with_classifier(text, get_attributions=False): # Added get_attr
 
         # Get attributions if requested and if a valid bias was predicted
         if get_attributions and predicted_bias not in ["Unknown Label", "Classifier Error", "Neutral"]:
-            # We generally want attributions for *why* a specific bias was chosen,
-            # not for why it was 'Neutral' (though technically possible).
-            # Only get attributions if the predicted_bias is a valid, non-error, non-neutral class.
             if predicted_bias in CLASSIFIER_LABELS and predicted_bias != "Neutral":
                  attributions = get_word_attributions(text, predicted_bias)
             else:
@@ -151,9 +141,6 @@ def predict_bias_with_classifier(text, get_attributions=False): # Added get_attr
     except Exception as e:
         print(f"An error occurred during classifier prediction: {e}")
         return "Classifier Error", 0.0, attributions
-
-# Call the loader when the module is imported (or app starts)
-# load_classifier_and_model() # Call this to ensure model/tokenizer are loaded for explainer
 
 if __name__ == "__main__":
     if load_classifier_and_model(): # Ensure model is loaded
